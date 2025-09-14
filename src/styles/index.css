@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+
+/* define a simple brand token (creates bg-brand) */
+@theme {
+  --color-primary: #f4e1b1;
+  --color-secondary: #c9b789;
+  --color-tertiary: #fff5db;
+}
+.layout{
+  @apply bg-primary w-screen h-screen
+}
+
+.center{
+  @apply flex justify-center items-center
+}
+
+/* OR: define a scale (creates bg-brand-50, bg-brand-100, bg-brand-500, etc.) */
+@theme {
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-500: #1E40AF;
+}
+
