@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DarkModeToggle from './Darkmode'
-const Navbar = () => {
+const Navbar = ({setDarkMode, darkMode}) => {
   return (
     <div className='
         h-[75px] w-full
@@ -15,7 +15,7 @@ const Navbar = () => {
       '
         icon="fa-solid fa-bars" />
         <h1>Notes App - VorTech</h1>
-      <DarkModeToggle />
+      <DarkModeToggle setDarkMode={setDarkMode} darkMode={darkMode} />
     </div>
   )
 }
