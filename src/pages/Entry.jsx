@@ -1,12 +1,20 @@
 import React from 'react'
 import 'styles/index.css'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 function click(){
   console.log('Clicked')
 }
 
 const Entry = () => {
+  const [name, setName] = useState("");
+
+  const handleChange = (e) => {
+    setName(e.target.value);
+    localStorage.setItem('name', e.target.value);
+  }
+
   return (
     <div className='layout center'>
       <div className='
@@ -25,11 +33,14 @@ const Entry = () => {
         <form action="" className='
             flex flex-col items-center
         '>
-          <input className='
-            border-1 border-solid rounded-[5px]
-            pl-[10px] mb-[13px] h-9
-            font-semibold
-            '
+          <input 
+              className='
+                  border border-solid rounded-[5px]
+                  pl-[10px] mb-[13px] h-9
+                  font-semibold
+                  '
+              value={name}
+              onChange={handleChange}
               type="text"  
               placeholder='Enter your name...'
           />
