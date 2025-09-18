@@ -1,20 +1,24 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DarkModeToggle from './Darkmode'
+import appLogo from '../../assets/app-logo.png'
 const Navbar = ({setDarkMode, darkMode}) => {
   return (
-    <div className='
+    <div className={`
         h-[75px] w-full
         flex justify-between items-center
         fixed top-0 left-0
-        bg-primary
+        ${darkMode ? ' bg-secondary' : 'bg-primary'}
         shadow-md
-    '>
-      <FontAwesomeIcon className='
-          text-[35px] pl-[15px]
+    `}>
+      <h1 className='
+        font-bold text-2xl
+        flex items-center
+        pl-[20px]
       '
-        icon="fa-solid fa-bars" />
-        <h1>Notes App - VorTech</h1>
+      >
+        <img height={50} width={50} src={appLogo}/>
+        Notes App - VorTech
+      </h1>
       <DarkModeToggle setDarkMode={setDarkMode} darkMode={darkMode} />
     </div>
   )

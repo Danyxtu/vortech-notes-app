@@ -3,14 +3,6 @@ import { Sun, Moon } from 'lucide-react';
 
 export default function DarkModeToggle({setDarkMode, darkMode}) {
 
-  // Load theme on mount
-  // useEffect(() => {
-  //   if (localStorage.theme === "dark") {
-  //     document.documentElement.classList.add("dark");
-  //     setDarkMode(true);
-  //   }
-  // }, []);
-
   const toggleDarkMode = () => {
     if(darkMode == false){
       setDarkMode(true);
