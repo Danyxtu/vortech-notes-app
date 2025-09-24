@@ -41,7 +41,7 @@ const Entry = () => {
                   '
               value={name}
               onChange={handleChange}
-              type="text"  
+              type="text"
               placeholder='Enter your name...'
           />
           <Link to='/dashboard'>

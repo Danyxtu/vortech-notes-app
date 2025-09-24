@@ -4,9 +4,10 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Entry from 'pages/Entry';
 import Landing from 'pages/Landing';
 import Dashboard from 'pages/Dashboard';
+
+// Import fonts
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 

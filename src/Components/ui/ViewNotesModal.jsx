@@ -1,35 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { Edit, Save, X, Trash2 } from 'lucide-react';
 
-const ViewNotesModal = ({ onClose }) => {
+const ViewNotesModal = ({ onClose, refreshNotes }) => {
   const [note, setNote] = useState({ title: "", text: "" });
+  const [originalNote, setOriginalNote] = useState(null); // store original
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    // Retrieve the current note from local storage
-    const storedNote = localStorage.getItem('currentNote');
+    const storedNote = localStorage.getItem("currentNote");
     if (storedNote) {
-      setNote(JSON.parse(storedNote));
+      const parsed = JSON.parse(storedNote);
+      setNote(parsed);
+      setOriginalNote(parsed); // keep a copy of original for matching
     }
   }, []);
 
   const handleSave = () => {
     const notes = JSON.parse(localStorage.getItem("notes") || "[]");
 
-    // Update by matching both title + text to avoid collisions
+    // update by matching original note instead of modified note
     const updatedNotes = notes.map(n =>
-      n.title === note.title && n.text === note.text ? note : n
+      n.title === originalNote.title && n.text === originalNote.text ? note : n
     );
 
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
     localStorage.setItem("currentNote", JSON.stringify(note));
+
+    setOriginalNote(note); // update original to latest
     setIsEditing(false);
+
+    if (refreshNotes) refreshNotes(); // refresh Dashboard immediately
   };
 
   const handleDelete = () => {
     const notes = JSON.parse(localStorage.getItem("notes") || "[]");
 
-    // Remove the current note
     const updatedNotes = notes.filter(
       n => !(n.title === note.title && n.text === note.text)
     );
@@ -37,19 +42,18 @@ const ViewNotesModal = ({ onClose }) => {
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
     localStorage.removeItem("currentNote");
 
-    // Close modal after deleting
+    if (refreshNotes) refreshNotes(); // refresh Dashboard immediately
+
     onClose();
   };
 
   return (
-    <div
-      className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-800 dark:bg-opacity-80"
-      style={{ backgroundColor: 'var(--color-background)' }}
-    >
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-400/40 dark:bg-opacity-80">
       <div
         className="w-4/5 md:w-3/5 lg:w-[800px] bg-secondary dark:bg-primary p-6 rounded-lg shadow-lg"
-        style={{ maxHeight: '70%', overflowY: 'auto' }}
+        style={{ maxHeight: "70%", overflowY: "auto" }}
       >
+        {/* Close button */}
         <h1
           className="text-right text-[35px] hover:cursor-pointer hover:opacity-70 active:opacity-60"
           onClick={onClose}
@@ -98,6 +102,7 @@ const ViewNotesModal = ({ onClose }) => {
               onClick={() => setIsEditing(true)}
               className="flex items-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
+          {/* Buttonas */}
               <Edit className="mr-2" />
               Edit
             </button>
@@ -105,7 +110,10 @@ const ViewNotesModal = ({ onClose }) => {
 
           {isEditing && (
             <button
-              onClick={() => setIsEditing(false)}
+              onClick={() => {
+                setIsEditing(false);
+                setNote(originalNote); // ✅ reset changes if cancelled
+              }}
               className="flex items-center px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
             >
               <X className="mr-2" />
@@ -113,7 +121,6 @@ const ViewNotesModal = ({ onClose }) => {
             </button>
           )}
 
-          {/*Delete button */}
           <button
             onClick={handleDelete}
             className="flex items-center px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"

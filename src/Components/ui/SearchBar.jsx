@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-const SearchBar = ({ notes, onSearch }) => {
+const SearchBar = ({onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
