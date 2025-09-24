@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Edit, Save, X, Trash2 } from 'lucide-react';
 
+
 const ViewNotesModal = ({ onClose, refreshNotes }) => {
   const [note, setNote] = useState({ title: "", text: "" });
   const [originalNote, setOriginalNote] = useState(null); // store original

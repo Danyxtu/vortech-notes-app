@@ -12,7 +12,7 @@ const Entry = () => {
 
   const handleChange = (e) => {
     setName(e.target.value);
-    localStorage.setItem('name', e.target.value);
+    localStorage.setItem('name', e.target.value); // name: 
   }
 
   return (

@@ -8,20 +8,26 @@ import NoteCard from '../Components/ui/NoteCard';
 import AddNoteModal from '../Components/ui/AddNoteModal';
 import ViewNotesModal from '../Components/ui/ViewNotesModal';
 
+// localStorage: getItem, setItem('name', value), stringify, parse from string -> object  compressed -> extract
+// useState: [currentData, updaterFuntion] = useState(0)
+// datas.map(data, index) -> new array for iteration -> return component (<h1 key={index}> data.house</h1>)
+// useEffect: {function(side effect), dependency array}
+
 const Dashboard = () => {
-  const name = localStorage.getItem('name');
-  const [darkMode, setDarkMode] = useState(false);
+  const name = localStorage.getItem('name'); //Danny
+  const [darkMode, setDarkMode] = useState(false); 
   const [modal, setModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
-
+  
   // ✅ use state for notes
   const [notes, setNotes] = useState([]);
+  // notes[{title:Danny and text: Danny is Pogi}, {title:Charles and text: Charles is 2nd Pogi}]
 
   // ✅ load notes from localStorage when component mounts
   useEffect(() => {
-    const storedNotes = JSON.parse(localStorage.getItem('notes') || '[]');
+    const storedNotes = JSON.parse(localStorage.getItem('notes') || '[]'); // {title:Danny and text: Danny is Pogi} {title:Charles and text: Danny is 2nd Pogi}
     setNotes(storedNotes);
-  }, []);
+  },[]);
 
   // ✅ helper function to refresh notes after add/edit/delete
   const refreshNotes = () => {
@@ -39,12 +45,14 @@ const Dashboard = () => {
       <Navbar setDarkMode={setDarkMode} darkMode={darkMode} />
 
       {/* Greeting + Search */}
-      <SearchBar />
+
       <div className="mb-[20px]">
         <h1 className="text-center text-black dark:text-white font-bold">
           Greetings! {name}
         </h1>
+        <SearchBar />
       </div>
+     
 
       {/* Notes Grid */}
       <div
