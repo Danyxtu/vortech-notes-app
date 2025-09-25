@@ -3,7 +3,6 @@ import { Plus } from 'lucide-react';
 
 // import components
 import Navbar from '../Components/ui/Navbar';
-import SearchBar from '../Components/ui/SearchBar';
 import NoteCard from '../Components/ui/NoteCard';
 import AddNoteModal from '../Components/ui/AddNoteModal';
 import ViewNotesModal from '../Components/ui/ViewNotesModal';
