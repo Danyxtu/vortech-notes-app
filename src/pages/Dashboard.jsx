@@ -19,17 +19,17 @@ const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   
-  // ✅ use state for notes
+  // use state for notes
   const [notes, setNotes] = useState([]);
   // notes[{title:Danny and text: Danny is Pogi}, {title:Charles and text: Charles is 2nd Pogi}]
 
-  // ✅ load notes from localStorage when component mounts
+  // load notes from localStorage when component mounts
   useEffect(() => {
     const storedNotes = JSON.parse(localStorage.getItem('notes') || '[]'); // {title:Danny and text: Danny is Pogi} {title:Charles and text: Danny is 2nd Pogi}
     setNotes(storedNotes);
   },[]);
 
-  // ✅ helper function to refresh notes after add/edit/delete
+  // helper function to refresh notes after add/edit/delete
   const refreshNotes = () => {
     const storedNotes = JSON.parse(localStorage.getItem('notes') || '[]');
     setNotes(storedNotes);
@@ -99,7 +99,7 @@ const Dashboard = () => {
           darkMode={darkMode}
           onClose={() => {
             setModal(false);
-            refreshNotes(); // ✅ refresh after closing modal
+            refreshNotes(); // refresh after closing modal
           }}
         />
       )}
@@ -107,7 +107,7 @@ const Dashboard = () => {
         <ViewNotesModal
           onClose={() => {
             setViewModal(false);
-            refreshNotes(); // ✅ refresh after closing modal
+            refreshNotes(); // refresh after closing modal
           }}
         />
       )}
