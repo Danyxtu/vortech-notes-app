@@ -44,13 +44,12 @@ const Dashboard = () => {
       {/* Navbar */}
       <Navbar setDarkMode={setDarkMode} darkMode={darkMode} />
 
-      {/* Greeting + Search */}
+      {/* Greeting */}
 
       <div className="mb-[20px]">
         <h1 className="text-center text-black dark:text-white font-bold">
           Greetings! {name}
         </h1>
-        <SearchBar />
       </div>
      
 
