@@ -1,14 +1,4 @@
-import { useState } from 'react';
-
-const SearchBar = ({onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    onSearch(value); // Call the parent function to filter notes
-  };
-
+const SearchBar = () => {
   return (
     <div className='flex justify-center'>
       <input
@@ -17,10 +7,7 @@ const SearchBar = ({onSearch }) => {
           px-[15px]
           border-2 border-black rounded-full
         '
-        type='text'
-        placeholder='Search'
-        value={searchTerm}
-        onChange={handleSearch}
+        placeholder="Design lang po ito sir"
       />
     </div>
   );

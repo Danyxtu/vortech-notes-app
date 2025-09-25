@@ -1,5 +1,3 @@
-import React from 'react';
-
 const AddNoteModal = ({ onClose, darkMode }) => {
   // if (!isOpen) return null;
 
@@ -24,7 +22,7 @@ const AddNoteModal = ({ onClose, darkMode }) => {
             notes.push({ title, text });
             localStorage.setItem('notes', JSON.stringify(notes));
             e.target.reset();
-            alert('Note added successfully!');
+            alert('Note added successfully!'); //DEBUGBUG LANG
             onClose();
           }}
         >
@@ -40,7 +38,7 @@ const AddNoteModal = ({ onClose, darkMode }) => {
               id="title"
               name="title"
               required
-              className="mt-1 block w-full border-gray-500 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="pl-[8px] mt-1 block w-full border-gray-500 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
           <div className="mb-4">
@@ -54,7 +52,7 @@ const AddNoteModal = ({ onClose, darkMode }) => {
               id="text"
               name="text"
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="pl-[8px] mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             ></textarea>
           </div>
           <button

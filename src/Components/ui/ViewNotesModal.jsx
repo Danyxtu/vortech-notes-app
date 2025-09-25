@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Edit, Save, X, Trash2 } from 'lucide-react';
 
 
@@ -59,7 +59,7 @@ const ViewNotesModal = ({ onClose, refreshNotes }) => {
           className="text-right text-[35px] hover:cursor-pointer hover:opacity-70 active:opacity-60"
           onClick={onClose}
         >
-          &times;
+         <p className="text-[15px] text-black-500 font-bold mt-2">{new Date().toLocaleDateString()}</p>  &times;
         </h1>
 
         <h2 className="text-xl font-bold mb-4">
@@ -83,7 +83,7 @@ const ViewNotesModal = ({ onClose, refreshNotes }) => {
         ) : (
           <>
             <h3 className="text-lg font-semibold mb-2">{note.title || "Untitled"}</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">
+            <p className="h-[180px] text-gray-700 dark:text-gray-300 mb-6">
               {note.text || "No note available."}
             </p>
           </>
@@ -113,7 +113,7 @@ const ViewNotesModal = ({ onClose, refreshNotes }) => {
             <button
               onClick={() => {
                 setIsEditing(false);
-                setNote(originalNote); // ✅ reset changes if cancelled
+                setNote(originalNote); //reset changes if cancelled
               }}
               className="flex items-center px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
             >
